@@ -54,9 +54,9 @@ const main = () => {
   blockchain.blocks[thirdBlock.hash] = thirdBlock
 
   longestChain = blockchain.longestChain()
-
+    console.log("2",longestChain)
   // 区块检查
-  console.assert(longestChain.length == 3, 'Block height should be 2')
+  console.assert(longestChain.length == 3, 'Block height should be 3')
   console.assert(
     longestChain[2].hash == thirdBlock.hash,
     `Height block hash should be ${thirdBlock.hash}`,
