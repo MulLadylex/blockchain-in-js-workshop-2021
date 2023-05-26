@@ -54,7 +54,7 @@ const main = () => {
   blockchain.blocks[nextCompetitionBlock.hash] = nextCompetitionBlock
 
   let longestChain = blockchain.longestChain()
-    console.log(longestChain)
+    // console.log(longestChain)
   console.assert(longestChain.length == 2, 'Error: Block height should be 2')
 
   let thirdBlock = new Block(
@@ -70,7 +70,7 @@ const main = () => {
   blockchain.blocks[thirdBlock.hash] = thirdBlock
 
   longestChain = blockchain.longestChain()
-    console.log(longestChain)
+    // console.log(longestChain)
   // 区块检查
   console.assert(longestChain.length == 3, 'Block height should be 3')
   console.assert(
