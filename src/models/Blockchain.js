@@ -85,8 +85,7 @@ class Blockchain {
   coinbaseTransaction(coinbaseBeneficiary) {
     const rewardAmount = 12.5
     const beneficiary = coinbaseBeneficiary
-    const coinbaseUTXO = new UTXO(rewardAmount)
-    this.utxoPool.addUTXO(beneficiary, coinbaseUTXO)
+    this.utxoPool.addUTXO(beneficiary, rewardAmount)
   }
 }
 
