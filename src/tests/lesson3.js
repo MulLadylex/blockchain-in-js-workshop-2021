@@ -29,7 +29,7 @@ const main = () => {
 
   console.assert(
     newBlock.coinbaseBeneficiary == miner,
-    'Error: Block niner public key error',
+    'Error: Block miner public key error',
   )
 
   // 验证区块难度合法性
@@ -62,6 +62,7 @@ const main = () => {
     nextBlock.hash,
     3,
     sha256(new Date().getTime().toString()).toString(),
+    miner,
   )
 
   thirdBlock = calcNonce(thirdBlock)
@@ -71,7 +72,7 @@ const main = () => {
   longestChain = blockchain.longestChain()
 
   // 区块检查
-  console.assert(longestChain.length == 3, 'Block height should be 2')
+  console.assert(longestChain.length == 3, 'Block height should be 3')
   console.assert(
     longestChain[2].hash == thirdBlock.hash,
     `Height block hash should be ${thirdBlock.hash}`,
