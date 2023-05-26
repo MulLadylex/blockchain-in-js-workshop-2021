@@ -4,11 +4,13 @@ export const DIFFICULTY = 2
 
 class Block {
   // 1. 完成构造函数及其参数
-  constructor(symbol,previousHash,height,hash) {
-    this.symbol=symbol
+  constructor(mainChain,previousHash,height,hash,mineraddr) {
+    this.mainChain=mainChain
     this.previousHash=previousHash
     this.height=height
     this.hash=hash
+    this.coinbaseBeneficiary=mineraddr
+    this.utxoPool = mainChain.utxoPool
   }
 
   /**
@@ -20,7 +22,6 @@ class Block {
   isValid() {
     const preHash = this.hash.slice(0,DIFFICULTY)
     let str = "0"
-    // console.log(str.repeat(2))
     if (preHash <= str.repeat(DIFFICULTY)) {
       return true
     } else {
