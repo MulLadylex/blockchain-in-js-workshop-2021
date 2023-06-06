@@ -11,6 +11,7 @@ class Block {
     this.hash=hash
     this.coinbaseBeneficiary=mineraddr
     this.utxoPool = mainChain.utxoPool
+    this.trans = []
   }
 
   /**
@@ -36,14 +37,28 @@ class Block {
   
 
   // 根据交易变化更新区块 hash
-  _setHash() {}
+  _setHash() {
+    this.hash = sha256
+  }
 
   // 汇总计算交易的 Hash 值
   /**
    * 默克尔树实现
    */
   combinedTransactionsHash() {
+    let level = this.trans.map(transhash => sha256(transhash))
+    while (level.length > 1) {
+      let nextLevel = []
+      for (let i = 0; i < level.length; i += 2) {
+        const left = level[i];
+        const right = i + 1 < level.length ? level[i+1] : ''
+        const combinedHash = sha256(left + right)
+        nextLevel.push(combinedHash) 
+      }
+      level = nextLevel
+    }
 
+    return level[0]
   }
 
   // 添加交易到区块
@@ -51,7 +66,10 @@ class Block {
    * 
    * 需包含 UTXOPool 的更新与 hash 的更新
    */
-  addTransaction() {}
+  addTransaction(trx) {
+    this.trans.push(trx)
+    this.utxoPool.handleTransaction(trx)
+  }
 
 }
 export default Block
