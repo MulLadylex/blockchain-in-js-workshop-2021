@@ -88,7 +88,7 @@ const main = () => {
     'Error: blockchain should contain third block',
   )
 
-  let latestUTXOPool = thirdBlock.utxoPool
+  const latestUTXOPool = thirdBlock.utxoPool
   log(latestUTXOPool)
 
   assert(
