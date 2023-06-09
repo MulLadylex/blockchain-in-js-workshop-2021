@@ -68,7 +68,7 @@ class Block {
    */
   addTransaction(trx) {
     this.trans.push(trx)
-    this.utxoPool.handleTransaction(trx)
+    this.utxoPool.handleTransaction(trx, this.coinbaseBeneficiary)
   }
 
 }
