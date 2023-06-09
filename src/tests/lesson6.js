@@ -33,7 +33,7 @@ const main = () => {
 
   assert(
     newBlock.coinbaseBeneficiary == miner,
-    'Error: Block niner public key error',
+    'Error: Block miner public key error',
   )
 
   // 验证区块难度合法性
@@ -66,6 +66,7 @@ const main = () => {
     nextBlock.hash,
     3,
     sha256(new Date().getTime().toString()).toString(),
+    miner,
   )
 
   thirdBlock = calcNonce(thirdBlock)
@@ -88,7 +89,7 @@ const main = () => {
     'Error: blockchain should contain third block',
   )
 
-  let latestUTXOPool = thirdBlock.utxoPool
+  const latestUTXOPool = thirdBlock.utxoPool
   log(latestUTXOPool)
 
   assert(
