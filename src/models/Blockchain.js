@@ -23,14 +23,14 @@ class Blockchain {
 
     //对当前链进行区块遍历，寻找最新区块
     for (let blockhash2 in this.blocks) {
-      if (this.blocks[blockhash2].index > max) {
-        max = this.blocks[blockhash2].index
+      if (this.blocks[blockhash2].height > max) {
+        max = this.blocks[blockhash2].height
         lastestBlockHash = blockhash2
       } 
     }
     lastestBlock.push(this.blocks[lastestBlockHash])
     for (let blockhash1 in this.blocks) {
-      if (this.blocks[blockhash1].index == max && blockhash1 != lastestBlockHash) {
+      if (this.blocks[blockhash1].height == max && blockhash1 != lastestBlockHash) {
         lastestBlock.push(this.blocks[blockhash1])
       }
     }
